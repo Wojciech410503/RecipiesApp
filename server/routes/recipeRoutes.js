@@ -1,74 +1,73 @@
-// routes/recipeRoutes.js
-const express = require('express');
-const router = express.Router();
-const Recipe = require('../models/Recipe');
+const express = require('express');  // Importing the Express library
+const router = express.Router();  // Creating a router instance
+const Recipe = require('../models/Recipe');  // Importing the Recipe model
 
-// Trasa: GET - Pobieranie wszystkich przepisów
-router.get('/', async (req, res) => {
+// Route: GET - Fetching all recipes
+router.get('/', async (req, res) => {  // Handles GET requests to retrieve all recipes
     try {
-        const recipes = await Recipe.find();  // Pobieramy wszystkie przepisy
-        res.status(200).json(recipes);        // Zwracamy je jako JSON
+        const recipes = await Recipe.find();  // Fetching all recipes from the database
+        res.status(200).json(recipes);  // Sending recipes as a JSON response
     } catch (err) {
-        console.log("Error fetching recipes:", err);
-        res.status(500).json({ error: err.message });
+        console.log("Error fetching recipes:", err);  // Logging errors, if any
+        res.status(500).json({ error: err.message });  // Sending error response
     }
 });
 
-// Trasa: POST - Dodawanie nowego przepisu
-router.post('/', async (req, res) => {
-    const { name, ingredients, instructions, category } = req.body;
-    if (!name || !ingredients || !instructions || !category) {
-        return res.status(400).send('All fields are required!');
+// Route: POST - Adding a new recipe
+router.post('/', async (req, res) => {  // Handles POST requests to add a new recipe
+    const { name, ingredients, instructions, category } = req.body;  // Extracting recipe data from the request body
+    if (!name || !ingredients || !instructions || !category) {  // Validating required fields
+        return res.status(400).send('All fields are required!');  // Sending error response if validation fails
     }
 
     try {
-        const newRecipe = new Recipe({ name, ingredients, instructions, category });
-        await newRecipe.save();
-        res.status(201).send({ message: 'Recipe added successfully!', data: newRecipe });
+        const newRecipe = new Recipe({ name, ingredients, instructions, category });  // Creating a new recipe instance
+        await newRecipe.save();  // Saving the recipe to the database
+        res.status(201).send({ message: 'Recipe added successfully!', data: newRecipe });  // Sending success response
     } catch (error) {
-        console.log("Error adding recipe:", error);
-        res.status(500).send({ error: error.message });
+        console.log("Error adding recipe:", error);  // Logging errors, if any
+        res.status(500).send({ error: error.message });  // Sending error response
     }
 });
 
-// Trasa: PUT - Aktualizacja przepisu
-router.put('/:id', async (req, res) => {
-    const { id } = req.params;
-    const { name, ingredients, instructions, category } = req.body;
+// Route: PUT - Updating a recipe
+router.put('/:id', async (req, res) => {  // Handles PUT requests to update a recipe
+    const { id } = req.params;  // Extracting the recipe ID from the route parameters
+    const { name, ingredients, instructions, category } = req.body;  // Extracting updated data from the request body
 
-    if (!name || !ingredients || !instructions || !category) {
-        return res.status(400).send('All fields are required!');
+    if (!name || !ingredients || !instructions || !category) {  // Validating required fields
+        return res.status(400).send('All fields are required!');  // Sending error response if validation fails
     }
 
     try {
-        const updatedRecipe = await Recipe.findByIdAndUpdate(id, {
+        const updatedRecipe = await Recipe.findByIdAndUpdate(id, {  // Finding and updating the recipe by ID
             name, ingredients, instructions, category
-        }, { new: true });
+        }, { new: true });  // Returning the updated document
 
-        if (!updatedRecipe) {
-            return res.status(404).send('Recipe not found!');
+        if (!updatedRecipe) {  // Checking if the recipe exists
+            return res.status(404).send('Recipe not found!');  // Sending error response if not found
         }
-        res.status(200).send({ message: 'Recipe updated successfully!', data: updatedRecipe });
+        res.status(200).send({ message: 'Recipe updated successfully!', data: updatedRecipe });  // Sending success response
     } catch (error) {
-        console.log("Error updating recipe:", error);
-        res.status(500).send({ error: error.message });
+        console.log("Error updating recipe:", error);  // Logging errors, if any
+        res.status(500).send({ error: error.message });  // Sending error response
     }
 });
 
-// Trasa: DELETE - Usuwanie przepisu
-router.delete('/:id', async (req, res) => {
-    const { id } = req.params;
+// Route: DELETE - Deleting a recipe
+router.delete('/:id', async (req, res) => {  // Handles DELETE requests to delete a recipe
+    const { id } = req.params;  // Extracting the recipe ID from the route parameters
 
     try {
-        const deletedRecipe = await Recipe.findByIdAndDelete(id);
-        if (!deletedRecipe) {
-            return res.status(404).send('Recipe not found!');
+        const deletedRecipe = await Recipe.findByIdAndDelete(id);  // Finding and deleting the recipe by ID
+        if (!deletedRecipe) {  // Checking if the recipe exists
+            return res.status(404).send('Recipe not found!');  // Sending error response if not found
         }
-        res.status(200).send({ message: 'Recipe deleted successfully!' });
+        res.status(200).send({ message: 'Recipe deleted successfully!' });  // Sending success response
     } catch (error) {
-        console.log("Error deleting recipe:", error);
-        res.status(500).send({ error: error.message });
+        console.log("Error deleting recipe:", error);  // Logging errors, if any
+        res.status(500).send({ error: error.message });  // Sending error response
     }
 });
 
-module.exports = router;
+module.exports = router;  // Exporting the router for use in other parts of the application

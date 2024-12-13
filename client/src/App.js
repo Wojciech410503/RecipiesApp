@@ -1,14 +1,15 @@
-import React from 'react';
-import RecipesPage from './components/RecipesPage'; // Import komponentu RecipesPage
-import './App.css'; // Import pliku CSS dla stylów specyficznych dla aplikacji
+import React from 'react'; // Import React library
+import RecipesPage from './components/RecipesPage'; // Import the RecipesPage component
+import './App.css'; // Import the CSS file for styles specific to the app
 
+// The main App component
 function App() {
   return (
-    <div className="app-container">
-      <h1>Data Representation App</h1>
-      <RecipesPage />
+    <div className="app-container">  {/* Wrapper div for the app */}
+      <h1>Data Representation And Querying</h1> {/* Display the main title of the app */}
+      <RecipesPage />  {/* Render the RecipesPage component */}
     </div>
   );
 }
 
-export default App;
+export default App;  // Export the App component to be used in other files

@@ -1,224 +1,212 @@
-table {
+/* Global Styles */
+body, html {
+  margin: 0;  /* Remove default margin */
+  padding: 0;  /* Remove default padding */
+  box-sizing: border-box;  /* Ensure that padding and border are included in element's width/height */
+  height: 100%;  /* Ensure full height for body and html */
+}
+
+/* Main app container styles */
+.app-container {
+  display: flex;  /* Use flexbox for centering content */
+  flex-direction: column;  /* Stack content vertically */
+  justify-content: center;  /* Center content vertically */
+  align-items: center;  /* Center content horizontally */
+  min-height: 100vh;  /* Ensure the container takes up the full height of the viewport */
+  padding: 20px;  /* Add padding inside the container */
+  background-color: #f9f9f9;  /* Light background color for the app */
+  font-family: Arial, sans-serif;  /* Set font family for the app */
+}
+
+/* Main heading */
+h1 {
+  color: #333;  /* Dark color for text */
+  margin-bottom: 20px;  /* Space below the heading */
+  text-align: center;  /* Center align the text */
+}
+
+/* Recipe Page Layout */
+.recipes-page {
   width: 100%;
-  border-collapse: collapse;
-  margin: 20px 0;
+  max-width: 1200px;  /* Limit max width for large screens */
+  margin: 0 auto;  /* Center horizontally */
+  padding: 20px;  /* Add padding around the page content */
+}
+
+/* Styling for sections containing forms */
+.form-section {
+  display: flex;  /* Use flexbox for form elements */
+  flex-direction: column;  /* Stack form elements vertically */
+}
+
+/* Section headers */
+h2 {
+  font-size: 1.5rem;  /* Set size for subheadings */
+  color: #333;  /* Dark color for text */
+  margin-bottom: 10px;  /* Space below the heading */
+  text-align: center;  /* Center align the text */
+}
+
+/* Add Recipe Form */
+h1 {
+  font-size: 2rem;  /* Larger font size for main heading */
+  color: #4CAF50;  /* Green color for main heading */
+  text-align: center;  /* Center align the text */
+  margin-bottom: 30px;  /* Space below the heading */
+}
+
+/* Styling for table displaying recipe list */
+table {
+  width: 100%;  /* Make the table take up the full width */
+  border-collapse: collapse;  /* Remove gaps between table cells */
+  margin: 20px 0;  /* Margin above and below the table */
 }
 
 table, th, td {
-  border: 1px solid #ddd;
+  border: 1px solid #ddd;  /* Border around the table and cells */
 }
 
 th, td {
-  padding: 10px;
-  text-align: left;
+  padding: 10px;  /* Padding inside table cells */
+  text-align: left;  /* Align text to the left */
 }
 
 th {
-  background-color: #f4f4f4;
+  background-color: #f4f4f4;  /* Light background for table headers */
 }
 
+/* Button Styles */
 button {
-  padding: 5px 10px;
-  margin: 5px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  cursor: pointer;
+  padding: 5px 10px;  /* Padding inside the button */
+  margin: 5px;  /* Margin between buttons */
+  background-color: #4CAF50;  /* Green background color for buttons */
+  color: white;  /* White text color */
+  border: none;  /* Remove border */
+  cursor: pointer;  /* Show pointer cursor on hover */
 }
 
-
-
+/* Button hover effect */
 button:hover {
-  background-color: #45a049;
+  background-color: #45a049;  /* Darker green on hover */
 }
 
-/* Styl dla formularzy */
+/* Form Styling */
 form {
-  margin: 20px 0;
-  height: 350px; /* Ustal wysokość formularza */
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  margin: 20px 0;  /* Margin around the form */
+  height: 350px;  /* Set form height */
+  display: flex;  /* Use flexbox for layout */
+  flex-direction: column;  /* Stack form elements vertically */
+  justify-content: space-between;  /* Space elements evenly */
 }
 
-/* Styl dla przycisków */
-button {
-  padding: 10px 20px;
-  cursor: pointer;
-  border: none;
-  margin-top: 10px;
-}
-
+/* Styling for buttons inside forms */
 button[type="submit"] {
-  background-color: #4CAF50;
-  color: white;
+  background-color: #4CAF50;  /* Green for submit buttons */
+  color: white;  /* White text */
 }
 
 button[type="button"] {
-  background-color: #f44336; /* Kolor przycisku DELETE */
-  color: white;
+  background-color: #f44336;  /* Red for delete buttons */
+  color: white;  /* White text */
 }
 
-/* Przyciski w formularzu */
 button {
-  width: 100%; /* Przyciski powinny zajmować całą szerokość */
+  width: 100%;  /* Make buttons take up the full width */
 }
 
-
-/* Styl dla pól wejściowych */
+/* Input and Textarea Styles */
 input, textarea, select {
-  width: 100%;
-  padding: 10px;
-  margin: 10px 0 15px;  /* Zwiększony odstęp między polami */
-  border: 1px solid #ddd;
-  border-radius: 8px;  /* Zaokrąglone rogi */
-  box-sizing: border-box; /* Kontrola wymiarów */
+  width: 100%;  /* Make form fields take up the full width */
+  padding: 10px;  /* Padding inside input fields */
+  margin: 10px 0 15px;  /* Spacing between fields */
+  border: 1px solid #ddd;  /* Light border for inputs */
+  border-radius: 8px;  /* Rounded corners for inputs */
+  box-sizing: border-box;  /* Include padding and border in width calculation */
 }
 
 input[type="text"], input[type="number"], textarea, select {
-  font-size: 1rem;  /* Ujednolicony rozmiar czcionki */
+  font-size: 1rem;  /* Set consistent font size for inputs */
 }
 
 input::placeholder, textarea::placeholder {
-  color: #888; /* Jasny szary kolor */
-  font-weight: 300; /* Lżejsza czcionka */
-  font-style: italic; /* Opcjonalnie: pochylony tekst dla subtelności */
+  color: #888;  /* Light gray for placeholder text */
+  font-weight: 300;  /* Lighter font weight */
+  font-style: italic;  /* Italic style for placeholders */
 }
 
-/* Styl etykiet */
+/* Label Styles */
 label {
-  font-size: 1.1rem;  /* Zwiększenie rozmiaru czcionki etykiet */
-  font-weight: bold;  /* Pogrubienie etykiety */
-  margin-bottom: 5px;  /* Odstęp od pola wejściowego */
-  display: block;  /* Blokowe wyświetlanie */
-  color: #333;  /* Kolor czcionki */
+  font-size: 1.1rem;  /* Increase font size for labels */
+  font-weight: bold;  /* Make labels bold */
+  margin-bottom: 5px;  /* Space below the label */
+  display: block;  /* Make labels block elements */
+  color: #333;  /* Dark color for labels */
 }
 
-.card-actions {
-  display: flex; /* Używamy flexboxa, aby ustawić przyciski w jednym wierszu */
-  gap: 10px; /* Odstęp między przyciskami */
-}
-
-
-
-
-
-.app-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  padding: 20px;
-  background-color: #f9f9f9; /* Opcjonalne: tło aplikacji */
-  font-family: Arial, sans-serif; /* Ujednolicenie czcionki */
-}
-
-h1 {
-  color: #333;
-  margin-bottom: 20px;
-  text-align: center;
-}
-
-body, html {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  height: 100%;
-}
-
-.recipes-container {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
+/* Recipe Card Layout */
 .card-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
+  display: grid;  /* Use grid layout for cards */
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));  /* Responsive columns */
+  gap: 20px;  /* Space between cards */
 }
 
 .recipe-card {
-  background-color: rgb(225, 225, 225);
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  background-color: rgb(225, 225, 225);  /* Light background for each card */
+  padding: 20px;  /* Padding inside cards */
+  border-radius: 8px;  /* Rounded corners for cards */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Light shadow for depth */
+  transition: box-shadow 0.3s ease, transform 0.3s ease;  /* Smooth transition for hover effects */
 }
 
+/* Recipe Card Hover Effects */
 .recipe-card:hover {
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);  /* Darker shadow on hover */
+  transform: translateY(-5px);  /* Slightly lift the card on hover */
 }
 
 .recipe-card h3 {
-  margin-bottom: 10px;
-  font-size: 1.5rem;
-  color: #333;
+  margin-bottom: 10px;  /* Margin below the title */
+  font-size: 1.5rem;  /* Larger font for recipe name */
+  color: #333;  /* Dark color for the title */
 }
 
 .recipe-card p {
-  margin: 5px 0;
-  font-size: 1rem;
-  color: #555;
-  
+  margin: 5px 0;  /* Margin around paragraph elements */
+  font-size: 1rem;  /* Set font size for recipe description */
+  color: #555;  /* Slightly lighter color for text */
 }
 
+/* Action Button Layout */
 .card-actions {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
+  display: flex;  /* Flex layout for buttons inside card */
+  justify-content: space-between;  /* Space buttons apart */
+  margin-top: 20px;  /* Space above buttons */
 }
 
 button {
-  padding: 8px 16px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
+  padding: 8px 16px;  /* Button padding */
+  background-color: #4CAF50;  /* Green background for actions */
+  color: white;  /* White text for buttons */
+  border: none;  /* Remove border */
+  cursor: pointer;  /* Pointer cursor on hover */
+  border-radius: 5px;  /* Rounded corners for buttons */
 }
 
 button:hover {
-  background-color: #45a049;
+  background-color: #45a049;  /* Darker green on hover */
 }
 
-
-
-.recipes-page {
+/* Recipe List Display */
+.recipes-container {
   width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
+  max-width: 1200px;  /* Max width for content */
+  margin: 0 auto;  /* Center content */
+  padding: 20px;  /* Padding around the container */
 }
 
-
-.form-section {
-  
-  display: flex;
-  flex-direction: column;
-}
-
-h2 {
-  font-size: 1.5rem;
-  color: #333;
-  margin-bottom: 10px;
-  text-align: center;
-}
-
-h1 {
-  font-size: 2rem;
-  color: #4CAF50;
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-
+/* Additional Recipe Page Section Styles */
 .form-section h2 {
-  font-size: 1.8rem;
-  margin-bottom: 15px;
-  text-align: left;
+  font-size: 1.8rem;  /* Larger font size for section headings */
+  margin-bottom: 15px;  /* Margin below section headings */
+  text-align: left;  /* Left align section headings */
 }
-

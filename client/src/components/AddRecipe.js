@@ -1,80 +1,79 @@
-import React, { useState } from 'react';
-import { addRecipe } from '../services/api'; // Zakładając, że masz funkcję do dodawania przepisu w API
+import React, { useState } from 'react'; // Import React and useState hook
+import { addRecipe } from '../services/api'; // Import the addRecipe function to call the API for adding recipes
 
-function AddRecipe({ onRecipeAdded }) {
-  const [recipe, setRecipe] = useState({
-    name: '',
-    ingredients: '',
-    instructions: '',
-    category: '',
+function AddRecipe({ onRecipeAdded }) { // Define AddRecipe component, accepting onRecipeAdded as a prop
+  const [recipe, setRecipe] = useState({ // Initialize state to hold recipe data
+    name: '', // Name of the recipe
+    ingredients: '', // Ingredients for the recipe
+    instructions: '', // Cooking instructions
+    category: '', // Category of the recipe
   });
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setRecipe({
-      ...recipe,
-      [name]: value,
+  const handleInputChange = (e) => { // Handle input change events
+    const { name, value } = e.target; // Extract name and value from the event target
+    setRecipe({ // Update the recipe state with the new input value
+      ...recipe, // Spread the existing recipe state
+      [name]: value, // Update the specific input field's value
     });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const newRecipe = {
-      name: recipe.name,
-      ingredients: recipe.ingredients.split(','),
-      instructions: recipe.instructions,
-      category: recipe.category,
+  const handleSubmit = async (e) => { // Handle form submission asynchronously
+    e.preventDefault(); // Prevent the default form submission behavior
+    const newRecipe = { // Create a new recipe object from the form data
+      name: recipe.name, // Recipe name
+      ingredients: recipe.ingredients.split(','), // Split ingredients into an array by commas
+      instructions: recipe.instructions, // Recipe instructions
+      category: recipe.category, // Recipe category
     };
 
     try {
-      const response = await addRecipe(newRecipe); // Funkcja do dodawania przepisu
-      onRecipeAdded(response.data); // Przekazanie nowego przepisu do stanu w RecipesPage
-      setRecipe({
+      const response = await addRecipe(newRecipe); // Call the addRecipe function to add the recipe to the API
+      onRecipeAdded(response.data); // Pass the new recipe data back to the parent component (RecipesPage)
+      setRecipe({ // Reset the form fields after submission
         name: '',
         ingredients: '',
         instructions: '',
         category: '',
-      }); // Reset formularza
-    } catch (error) {
-      console.error('Error adding recipe:', error);
+      });
+    } catch (error) { // Catch any errors that occur during the API request
+      console.error('Error adding recipe:', error); // Log the error to the console
     }
   };
 
   return (
     <div>
-     
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}> {/* Form element that triggers handleSubmit on submission */}
         <input
           type="text"
           name="name"
           value={recipe.name}
           placeholder="Recipe Name"
-          onChange={handleInputChange}
+          onChange={handleInputChange} // Update state on input change
         />
         <input
           type="text"
           name="ingredients"
           value={recipe.ingredients}
           placeholder="Ingredients (comma separated)"
-          onChange={handleInputChange}
+          onChange={handleInputChange} // Update state on input change
         />
         <textarea
           name="instructions"
           value={recipe.instructions}
           placeholder="Instructions"
-          onChange={handleInputChange}
+          onChange={handleInputChange} // Update state on input change
         />
         <input
           type="text"
           name="category"
           value={recipe.category}
           placeholder="Category"
-          onChange={handleInputChange}
+          onChange={handleInputChange} // Update state on input change
         />
-        <button type="submit">Add Recipe</button>
+        <button type="submit">Add Recipe</button> {/* Button to submit the form */}
       </form>
     </div>
   );
 }
 
-export default AddRecipe;
+export default AddRecipe; // Export AddRecipe component for use in other parts of the application

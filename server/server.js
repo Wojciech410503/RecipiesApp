@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');  // Importujemy bibliotekę CORS
 const recipeRoutes = require('./routes/recipeRoutes'); // Importujemy trasy dla przepisów
 
 const app = express();
@@ -7,6 +8,9 @@ const port = 4000;
 
 // Middleware do obsługi JSON
 app.use(express.json());
+
+// Używamy CORS, aby pozwolić na zapytania z różnych źródeł
+app.use(cors());  // Umożliwia dostęp z innych domen
 
 // Trasa główna
 app.get('/', (req, res) => {
